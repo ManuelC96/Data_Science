@@ -6,7 +6,7 @@ import numpy as np
 import requests as req
 
 # °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-
+# Contruct an object
 class ComplexNumber:
     def __init__(self, re, im):
         self.re = re
@@ -37,15 +37,31 @@ class ComplexNumber:
             return self.re
         elif k == "im":
             return self.im
+          
+    def __add__(self, other):
+        if isinstance(other, ComplexNumber):
+            return ComplexNumber(self.re + other.re, self.im + other.im)
+        elif isinstance(other, int):
+            return ComplexNumber(self.re + other, self.im + other)
+        elif isinstance(other, float):
+            return ComplexNumber(self.re + other, self.im + other)
+        else:
+            raise Exception(f" {type(other)} {other} isn't a valid type")
+        
+    def __len__(self):
+        from math import sqrt
+        return int(sqrt(self.re**2 + self.im**2))
 
-
+# initialise the object ComplexNumber
 c1 = ComplexNumber(5, 6)
 print(c1)
 
 c2 = ComplexNumber(5, 6)
 print(c2)
-
-c1["re"] = 55
+# try various methods
 print(c1)
-
-print(c1["im"])
+print(c1 + 1)
+print(c1 + c2)
+print(c1 + "s")
+c1["re"] = 55
+print(len(c1))
