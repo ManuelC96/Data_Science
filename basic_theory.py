@@ -111,24 +111,11 @@ import requests as req
 
 # exception_tree(BaseException)
 # °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-# Game 1 (sasso, carta, forbici)
 
-import random
 
-occurrences = {
-    "sasso": 0,
-    "carta": 0,
-    "forbice": 0
-}
 
-for i in range(1000):
+        
+            
+    
 
-    r = random.randint(0,2)
-    if r == 0:
-        occurrences["sasso"] += 1
-    if r == 1:
-        occurrences["forbice"] += 1
-    if r == 2:
-        occurrences["carta"] += 1
-
-print(occurrences)
+    
