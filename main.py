@@ -46,7 +46,7 @@ import requests as req
 #         elif isinstance(other, float):
 #             return ComplexNumber(self.re + other, self.im + other)
 #         else:
-#             raise Exception(f" {type(other)} {other} isn't a valid type")
+#             raise Exception(f" {type(other)} {other} isn't a valif type")
         
 #     def __len__(self):
 #         from math import sqrt
@@ -102,11 +102,33 @@ import requests as req
 
 # import inspect
 
-def exception_tree(cls, ind = 0):
-    print("-" * ind, cls)
-    for i in cls.__subclasses__():
-        exception_tree(i, ind + 2)
+# def exception_tree(cls, ind = 0):
+#     print("-" * ind, cls)
+#     for i in cls.__subclasses__():
+#         exception_tree(i, ind + 2)
         
 
 
-exception_tree(BaseException)
+# exception_tree(BaseException)
+# °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+# Game 1 (sasso, carta, forbici)
+
+import random
+
+occurrences = {
+    "sasso": 0,
+    "carta": 0,
+    "forbice": 0
+}
+
+for i in range(1000):
+
+    r = random.randint(0,2)
+    if r == 0:
+        occurrences["sasso"] += 1
+    if r == 1:
+        occurrences["forbice"] += 1
+    if r == 2:
+        occurrences["carta"] += 1
+
+print(occurrences)
