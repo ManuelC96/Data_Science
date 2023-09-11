@@ -5,27 +5,26 @@ apiKey = "f368dd14592386a0e3051328b54a9fce"
 
 baseUrl = "https://v3.football.api-sports.io/"
 
-headers = {
-    "x-apisports-key" : apiKey
-}
+headers = {"x-apisports-key": apiKey}
 
-endpoint = "countries"
+endpoint = {"timezone": "timezone", "leagues": "leagues", "countries": "countries"}
 
-url = baseUrl + endpoint
+url = baseUrl + endpoint["countries"]
 
-params = {
-    "code" : "IT"
-}
-response = requests.get(url=url, headers=headers, params=params)
+print(url)
+
+params = {"code"}
+response = requests.get(url=url, headers=headers)
 # print(response.status_code)
 # print(response.text)
 
 dictionary = response.json()["response"]
 print(dictionary)
 
-for e in dictionary:
-    print(e["name"], e["code"])
-# print(json.dumps(dictionary, indent=4))
+
+for el in dictionary:
+    url = el["flag"]
+    print(url)
 
 
-# print("Make a request to this url: {}".format(url))
+# code to save img to file(using PIL lib)
