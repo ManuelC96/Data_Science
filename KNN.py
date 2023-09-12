@@ -208,8 +208,11 @@ xTrain, xTest, yTrain, yTest = train_test_split(
 )
 
 
-# print(xTrain)
-print(yTrain)
 
 
-legendaryClassifier
+
+legendaryClassifier = KNNClssifier(k = 3, x=xTrain, y=yTrain)
+
+n = legendaryClassifier.evaluate(xTest, yTest)
+
+print(n)
