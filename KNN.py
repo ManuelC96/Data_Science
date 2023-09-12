@@ -211,7 +211,7 @@ xTrain, xTest, yTrain, yTest = train_test_split(
 
 
 
-legendaryClassifier = KNNClssifier(k = 3, x=xTrain, y=yTrain)
+legendaryClassifier = KNNClssifier(k = 6, x=xTrain, y=yTrain)
 
 n = legendaryClassifier.evaluate(xTest, yTest)
 
