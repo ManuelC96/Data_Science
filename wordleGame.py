@@ -5,13 +5,11 @@
 # yellow
 # green
 
-# T A T T Y
-
-# B R I T T
 
 
 
-user = list("TATTY")
+
+user = list("TRTIT")
 word = list("BRITT")
 occurencies = {}# association dict
 statuses = []
@@ -31,20 +29,21 @@ for i in range(len(user)):#extract user word index
                     #if index j in values extract all the occurencies keys associated with value 
                     keys = [ k for k, v in occurencies.items() if v in values ]# key list
                 
-                    
+                    # eliminate from dict every el that is not in green status
                     for key in keys:
                         if statuses[key] != "green":
                             del occurencies[key]
-                            statuses[key] = "grey"
-                    print("Keys -> ", keys)
-                    print("Values -> ", values)
-                    print("Occurencies ->", occurencies)
-                    values.remove(j)
-                    for index in range(len(values)):
-                        key = keys[index]
-                        if values[index] not in occurencies.values():
-                            occurencies[key] = values[index]
-                            statuses[key] = "yellow"
+                            statuses[key] = "grey"#put every status in stat list in grey but green ones
+                    print(f"Keys        -> {keys}")
+                    print(f"Values      -> {values}")
+                    print(f"Occurencies -> {occurencies}")
+                    values.remove(j)# remove from val list the values that have direct correspnding letters
+                    #relate keys with remaining values, if keys are more then values don't consider them
+                    for index in range(len(values)):#count len values
+                        key = keys[index]#extract the first free key
+                        if values[index] not in occurencies.values():#if value not present in arleady associeted values
+                            occurencies[key] = values[index]#insert key value cuple in dict
+                            statuses[key] = "yellow"#set status to yellow
 
 
                 occurencies[i] = j #key is index day word letter, val is index letter user word, if letter are equal
@@ -56,15 +55,6 @@ for i in range(len(user)):#extract user word index
     
     statuses.append(status)#append status to statuses list                 
                 
-
-
-
-
-
-            
-
-
-    statuses.append(status)
 
 print(occurencies)
 print(statuses)
