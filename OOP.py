@@ -5,6 +5,7 @@ class Item:
     # assign global variable to class, this are called --> Class attribute
     payRate = 0.8
     all = []
+    random = 0
 
     def __init__(self, name: str, price: float, quantity=0) -> None:
         # received arguments validators
