@@ -69,4 +69,25 @@ class Item:
         return f"Item('{self.name}', {self.price}, {self.quantity})"#best practice is to represent the obj same way we create instance of the class, so we can copy from cmd and change argument only to instantiate a different obj
 
 
-    
+
+Item.instanciateFromCsv()
+print(Item.all)
+
+print(Item.all[0].isInt(22))
+
+#to known
+#we can manually assign attributes to class instance :
+Item.all[0].expiration = 2026
+print(Item.all[0].expiration)
+
+
+
+#Class Inheritance proprieties
+class Phone(Item):  #passing a class as argument of another class, 
+                    #lets second class(child), inherit all first class(parent) methods
+    pass
+
+
+
+
+Phone("Iphone12",1200.99,1)
