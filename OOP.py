@@ -20,19 +20,22 @@ class Item:
         self.quantity = quantity
 
         Item.all.append(self)#append initialized item to [all] list
+
     # Instance method a method that applies to class instance
     def applyDiscount(self):
         self.price = self.price * self.payRate
 
     #@classmethod
     #^^^^^^^^^^^
-    @classmethod#creater a class method using decorator, this method is proper of the class omly, not of his instance
+    #used to create instancies of objs from data stucture, all with the __init__ method proprieties
+    #like from csv, json or other data stucture file
+    @classmethod
     def instanciateFromCsv(cls):#pass class cls reference as first argv
         with open("items.csv", "r") as f:
             reader = csv.DictReader(f)
             items =list(reader)
             
-        # loop thru list items and instantiate the objs
+        # loop through list items and instantiate the objs
 
         for item in items:
             newItem = dict()
@@ -45,14 +48,20 @@ class Item:
                 price=float(newItem["price"]),
                 quantity=int(newItem["quantity"])
             )
-             
+        
     # Static methods
     #^^^^^^^^^^^^^^^
-    
+    #used to apply some tipe of logic that can be different per instance
+    @staticmethod 
+    def isInt(num):
+        if isinstance(num, float):
+            return num.is_integer()
+        elif isinstance(num, int):
+            return True
+        else:
+            return False
 
-
-
-
+    # methods that return something when obj is called
     # def __str__(self) -> str:
     #     return f"Item('{self.name}', {self.price}, {self.quantity})"
 
@@ -61,18 +70,3 @@ class Item:
 
 
     
-# cs
-# item1 = Item("Phone", 100, 1)
-# item2 = Item("Laptop", 1000, 3)
-# item3 = Item("Cable", 10, 5)
-# item4 = Item("Mouse", 50, 5)
-# item5 = Item("Keyboard", 75, 5)
-
-
-
-Item.instanciateFromCsv()
-
-print(Item.all)
-
-
-
