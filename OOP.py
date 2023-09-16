@@ -24,6 +24,7 @@ class Item:
     # Instance method a method that applies to class instance
     def applyDiscount(self):
         self.price = self.price * self.payRate
+        return self.price 
 
     #@classmethod
     #^^^^^^^^^^^
@@ -82,12 +83,30 @@ print(Item.all[0].expiration)
 
 
 
-#Class Inheritance proprieties
-class Phone(Item):  #passing a class as argument of another class, 
-                    #lets second class(child), inherit all first class(parent) methods
-    pass
+# #Class Inheritance proprieties
+# class Phone(Item):  #passing a class as argument of another class, 
+#                     #lets second class(child), inherit all first class(parent) methods
+#     def __init__(self, expirationDate : int):#<----- this is the wrong way
+#         self.expirationDate = expirationDate
 
 
 
 
-Phone("Iphone12",1200.99,1)
+# phone1 = Phone("Iphone12",1200.99,1, 2026)  #TypeError: __init__() takes 2 positional arguments but 5 were given
+# print(phone1.applyDiscount())               #this is because we cant use __init__ on a child class whitout super()
+#                                             #method otherwise we are to overwrite the parent class __init__ method
+
+class Phone(Item):
+
+    def __init__(self, name: str, price: float, quantity=0, expirationDate=0):
+
+        #call to super function in  order to have fully access to all attribute/methods of parent(super) class
+        super().__init__(
+            name, 
+            price, 
+            quantity
+            )
+
+        self.expirationDate = expirationDate
+
+
