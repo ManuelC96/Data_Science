@@ -67,7 +67,8 @@ class Item:
     #     return f"Item('{self.name}', {self.price}, {self.quantity})"
 
     def __repr__(self) -> str: # same as __str__ method represent info when instance obj is argument of print func 
-        return f"Item('{self.name}', {self.price}, {self.quantity})"#best practice is to represent the obj same way we create instance of the class, so we can copy from cmd and change argument only to instantiate a different obj
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"#best practice is to represent the obj same way we create instance of the class, 
+                                                                    #so we can copy from cmd and change argument only to instantiate a different obj
 
 
 
@@ -110,3 +111,6 @@ class Phone(Item):
         self.expirationDate = expirationDate
 
 
+phone1 = Phone("Iphone12",1200.99,1, 2026)
+
+print(phone1)
