@@ -91,3 +91,22 @@ print(maxYear)
 print(df.groupby('rating').groups)
 print(df.groupby('rating').get_group('PG-13'))
 print(df.groupby('rating').get_group('PG-13').sort_values(by = ['release_year']))
+
+for i in range(0,len(df.type.value_counts())):
+    label = df.type.value_counts().index[i]
+    print(label)
+    number = df.type.value_counts().iloc[i]
+    print(number)
+
+
+
+    
+plt.figure(figsize=(12, 6))
+plt.title("Series vs Films")
+plt.pie(df.type.value_counts(),
+        labels = df.type.value_counts().index,
+        colors=['green', "blue"],
+        autopct="%1.2f%%"
+        )
+
+plt.show()
