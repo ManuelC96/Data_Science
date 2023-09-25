@@ -55,58 +55,96 @@ df.set_index('nome', inplace=True)
 # - filter
 
 # select for column [normal viz] [[tabel viz]]
-print(df[["zona","incassi", "spese"]])
-# iloc interger location based row column
-print(df.iloc[0:2,0:2])
-# iloc access a group of rows and columns by label
-print(df.loc["Mark","zona"])
-# group
-gr = df.groupby(["zona"])
-print(gr.groups)
-# - order
+# print(df[["zona","incassi", "spese"]])
+# # iloc interger location based row column
+# print(df.iloc[0:2,0:2])
+# # iloc access a group of rows and columns by label
+# print(df.loc["Mark","zona"])
+# # group
+# gr = df.groupby(["zona"])
+# print(gr.groups)
+# # - order
 # 
 
 
 # Exercise Netflix
 # data processing
 df = pd.read_csv("netflix_titles.csv")
-# print(df.head)
-# print(df.shape)
-# print(df.isnull().any())
-# print(df.isnull().sum())
-# print(df.isnull().sum().sum())
-# print(df.director.fillna('NoDirector', inplace=True))
-# print(df.director)
-# print(df.cast.fillna('NoCast', inplace=True))
-# print(df.cast)
-# print(df.country.fillna('NoCast', inplace=True))
-# print(df.country)
+df.head
+df.shape
+df.isnull().any()
+df.isnull().sum()
+df.isnull().sum().sum()
+df.director.fillna('NoDirector', inplace=True)
+df.director
+df.cast.fillna('NoCast', inplace=True)
+df.cast
+df.country.fillna('NoCast', inplace=True)
+df.country
 df.dropna(subset=["date_added","rating","duration"], inplace = True)
 # print(df.isnull().any())
 
 minYear = df["release_year"].min()
 maxYear = df["release_year"].max()
-print(minYear)
-print(maxYear)
-print(df.groupby('rating').groups)
-print(df.groupby('rating').get_group('PG-13'))
-print(df.groupby('rating').get_group('PG-13').sort_values(by = ['release_year']))
+minYear
+maxYear
+df.groupby('rating').groups
+df.groupby('rating').get_group('PG-13')
+df.groupby('rating').get_group('PG-13').sort_values(by = ['release_year'])
 
-for i in range(0,len(df.type.value_counts())):
-    label = df.type.value_counts().index[i]
-    print(label)
-    number = df.type.value_counts().iloc[i]
-    print(number)
+# for i in range(0,len(df.type.value_counts())):
+#     label = df.type.value_counts().index[i]
+#     print(label)
+#     number = df.type.value_counts().iloc[i]
+#     print(number)
 
 
 
     
-plt.figure(figsize=(12, 6))
-plt.title("Series vs Films")
-plt.pie(df.type.value_counts(),
-        labels = df.type.value_counts().index,
-        colors=['green', "blue"],
-        autopct="%1.2f%%"
-        )
+# plt.figure(figsize=(12, 6))
+# plt.title("Series vs Films")
+# plt.pie(df.type.value_counts(),
+#         labels = df.type.value_counts().index,
+#         colors=['green', "blue"],
+#         autopct="%1.2f%%"
+#         )
 
-plt.show()
+# plt.show()
+
+genres = df.listed_in.str.split(',',expand = True)
+# print(df.listed_in.head())
+# print(genres.shape)
+genres = genres.stack()
+# print(type(genres))
+# print(genres.shape)
+
+# print(genres.value_counts())
+# print(genres.value_counts().index)
+
+df_cast = df[df['cast'] != "NoCast"]
+
+print(df_cast)
+
+actors = df['cast'].str.split(',', expand=True)
+print(actors)
+
+actors = actors.stack() 
+df.rating.unique()
+df.rating.unique().any()
+
+
+plt.figure(figsize=(12, 6))
+plt.pie(df.rating.value_counts(), labels = df.rating.value_counts().index, autopct="%1.2f%%" )
+# plt.show()
+
+
+from collections import Counter
+
+def return_counter(dataframe, column_name, limit):
+    c = Counter(dataframe[column_name].values)
+    most_commonm = c.most_common(limit)
+    print(dict(most_commonm))
+
+return_counter(df, 'country', 3)
+
+df_Martin = df(df['director'] == 'Martin Scorsese')
