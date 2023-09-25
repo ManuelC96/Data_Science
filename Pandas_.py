@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-import csv
+from matplotlib import pyplot as plt
+
 
 # data = np.array([1,2,3,4,5,6,7,8,66,88])
 
@@ -37,7 +38,7 @@ import csv
 # # print(df.describe())
 # # print(df.describe().T)
 
-# PANDAS define the step
+# PANDAS define the steps
 
 # define DataSet
 df = pd.DataFrame({
@@ -59,6 +60,34 @@ print(df[["zona","incassi", "spese"]])
 print(df.iloc[0:2,0:2])
 # iloc access a group of rows and columns by label
 print(df.loc["Mark","zona"])
-
+# group
+gr = df.groupby(["zona"])
+print(gr.groups)
 # - order
 # 
+
+
+# Exercise Netflix
+# data processing
+df = pd.read_csv("netflix_titles.csv")
+# print(df.head)
+# print(df.shape)
+# print(df.isnull().any())
+# print(df.isnull().sum())
+# print(df.isnull().sum().sum())
+# print(df.director.fillna('NoDirector', inplace=True))
+# print(df.director)
+# print(df.cast.fillna('NoCast', inplace=True))
+# print(df.cast)
+# print(df.country.fillna('NoCast', inplace=True))
+# print(df.country)
+df.dropna(subset=["date_added","rating","duration"], inplace = True)
+# print(df.isnull().any())
+
+minYear = df["release_year"].min()
+maxYear = df["release_year"].max()
+print(minYear)
+print(maxYear)
+print(df.groupby('rating').groups)
+print(df.groupby('rating').get_group('PG-13'))
+print(df.groupby('rating').get_group('PG-13').sort_values(by = ['release_year']))
