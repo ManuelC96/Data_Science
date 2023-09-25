@@ -147,4 +147,8 @@ def return_counter(dataframe, column_name, limit):
 
 return_counter(df, 'country', 3)
 
-df_Martin = df(df['director'] == 'Martin Scorsese')
+df_Martin = df[df['director'] == 'Martin Scorsese']
+print(df.date_added[0])
+print(type(df.date_added[0]))
+
+df["date_added"] = pd.to_datetime(df["date_added"])
