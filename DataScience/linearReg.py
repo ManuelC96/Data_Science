@@ -37,3 +37,4 @@ y_pred = m*X + c # liner eq formula based on predictions
 
 plt.plot([min(X), max(X)], [min(y_pred), max(y_pred)], color = "red")
 plt.show()
+
