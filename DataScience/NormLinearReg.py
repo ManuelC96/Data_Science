@@ -4,12 +4,12 @@ import numpy as np
 
 # normalized linear reg
 data = pd.read_csv('DataScience\\data\\data_01.csv')
-print(data)
+
 
 x = data.iloc[:,0]
-print(x)
+
 y = data.iloc[:,1]
-print(y)
+
 
 
 def normalizer(data):
@@ -23,13 +23,13 @@ def normalizer(data):
         iNorm = (data[i] - minVal) / (maxVal - minVal)
         normArr[i] = iNorm
     
-    return normArr
+    return normArr# normalized array
 
 
-normX = normalizer(x)
-normY = normalizer(y)
+normX = normalizer(x)# x avriables
+normY = normalizer(y)#y variables
 
-
+# usigng gradiend descent on MSE to calculate the besat fit values for m and q
 def gradienDescent(cicle: int,
     epochs: int, 
     learningRate: float , 
@@ -43,8 +43,8 @@ def gradienDescent(cicle: int,
     :param cicle: number of training cicles
     :param epochs: number of subtraining cicles
     :param learningRate: recommended rate 0.001 - 0.1
-    :param x: x variable in dataset
-    :param y: y variable in dataset
+    :param x: x variables in dataset
+    :param y: y variables in dataset
     :param m: slope(set to 0)
     :param q: y axis interceptor(set to 0)
     '''
@@ -57,32 +57,35 @@ def gradienDescent(cicle: int,
 
             yPred = m * x + q
 
-            mDrv = (-2/n) * sum(x * (y - yPred))
-            qDrv = (-2/n) * sum(y - yPred)
-            m -= learningRate * mDrv
-            q -= learningRate * qDrv
+            mDrv = (-2/n) * sum(x * (y - yPred))#derivate mse against m
+            qDrv = (-2/n) * sum(y - yPred)#derivate the mse against q
+            m -= learningRate * mDrv #update m
+            q -= learningRate * qDrv #update q
     
-    return (m[0], q,)
+    return (m[0], q[0],)
 
 
-m = gradienDescent(cicle= 10, epochs= 500, learningRate= 0.01, x= normX, y= normY)[0]
-q = gradienDescent(cicle= 10, epochs= 500, learningRate= 0.01, x= normX, y= normY)[1]
-
+m = gradienDescent(cicle= 1, epochs= 500, learningRate= 0.01, x= normX, y= normY)[0]
+q = gradienDescent(cicle= 1, epochs= 500, learningRate= 0.01, x= normX, y= normY)[1]
+print(m, q)
 yPred = normX * m + q
 print(yPred)
 
 plt.scatter(normX, normY)
 plt.plot([min(normX), max(normX)],[min(yPred), max(yPred)], color = "red")
+plt.scatter([np.mean(normX)],[np.mean(normY)], color = "black", marker='o', linewidths=8)
+
 plt.show()
 
+# animating the process
+# cicles = 100
+# for i in range(cicles):
+#     m = gradienDescent(cicle= i, epochs= 500, learningRate= 0.01, x= normX, y= normY)[0]
+#     q = gradienDescent(cicle= i, epochs= 500, learningRate= 0.01, x= normX, y= normY)[1]
+#     yPred = normX * m + q
+#     plt.scatter(normX, normY)
+#     plt.plot([min(normX), max(normX)],[min(yPred), max(yPred)], color = "red")
+#     plt.scatter([np.mean(normX)],[np.mean(normY)], color = "black", marker='o', linewidths=8)
 
-def test_function(p1, p2, p3):
-    """
-    test_function does blah blah blah.
-
-    :param p1: describe about parameter p1
-    :param p2: describe about parameter p2
-    :param p3: describe about parameter p3
-    :return: describe what it returns
-    """ 
-    pass
+#     plt.pause(0.01)
+#     plt.clf()
