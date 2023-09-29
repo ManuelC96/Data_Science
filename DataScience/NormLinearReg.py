@@ -62,30 +62,47 @@ def gradienDescent(cicle: int,
             m -= learningRate * mDrv #update m
             q -= learningRate * qDrv #update q
     
-    return (m[0], q[0],)
+    # return (m[0], q[0],)
+    return (m, q)
 
 
-m = gradienDescent(cicle= 1, epochs= 500, learningRate= 0.01, x= normX, y= normY)[0]
-q = gradienDescent(cicle= 1, epochs= 500, learningRate= 0.01, x= normX, y= normY)[1]
-print(m, q)
-yPred = normX * m + q
-print(yPred)
+# m = gradienDescent(cicle= 1, epochs= 500, learningRate= 0.01, x= normX, y= normY)[0]
+# q = gradienDescent(cicle= 1, epochs= 500, learningRate= 0.01, x= normX, y= normY)[1]
+# print(m, q)
+# yPred = normX * m + q
+# print(yPred)
 
-plt.scatter(normX, normY)
-plt.plot([min(normX), max(normX)],[min(yPred), max(yPred)], color = "red")
-plt.scatter([np.mean(normX)],[np.mean(normY)], color = "black", marker='o', linewidths=8)
+# plt.scatter(normX, normY)
+# plt.plot([min(normX), max(normX)],[min(yPred), max(yPred)], color = "red")
+# plt.scatter([np.mean(normX)],[np.mean(normY)], color = "black", marker='o', linewidths=8)
 
-plt.show()
+# plt.show()
 
 # animating the process
-# cicles = 100
-# for i in range(cicles):
-#     m = gradienDescent(cicle= i, epochs= 500, learningRate= 0.01, x= normX, y= normY)[0]
-#     q = gradienDescent(cicle= i, epochs= 500, learningRate= 0.01, x= normX, y= normY)[1]
-#     yPred = normX * m + q
-#     plt.scatter(normX, normY)
-#     plt.plot([min(normX), max(normX)],[min(yPred), max(yPred)], color = "red")
-#     plt.scatter([np.mean(normX)],[np.mean(normY)], color = "black", marker='o', linewidths=8)
+cicles = 100
+for i in range(cicles):
+    m = gradienDescent(cicle= i, epochs= 500, learningRate= 0.001, x= normX, y= normY)[0]
+    q = gradienDescent(cicle= i, epochs= 500, learningRate= 0.001, x= normX, y= normY)[1]
+    yPred = normX * m + q
+    plt.scatter(normX, normY)
+    plt.plot([min(normX), max(normX)],[min(yPred), max(yPred)], color = "red", )
+    plt.scatter([np.mean(normX)],[np.mean(normY)], color = "black", marker='o', linewidths=8)
 
-#     plt.pause(0.01)
-#     plt.clf()
+    plt.pause(0.1)
+    plt.clf()
+    # --------------------------------------/
+    # Calcuclate how well the model perform-/
+    # --------------------------------------/
+    # Calculate the erro / residual
+    # y - yPred
+
+    # calculate the sum of squares errors
+    # calculate the sum of squares total
+    # calculate the sum of squares regression 
+    # calculate the coefficient of determination 
+    # a tecnique used to calculate the percentage of success of our model
+   
+    # SSE = sum(y - yPred)**2
+    # SST = sum(y - meanY)**2
+    # SSR = sum(ymean - yPred)**2
+    # r**2 = SSR/SST (*100 to calculatwe the percentage)
