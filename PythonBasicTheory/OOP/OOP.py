@@ -1,3 +1,20 @@
+# -----------------------------------------/
+# OOP-PRINCIPLES---------------------------/
+# -----------------------------------------/
+
+# 1 encapsulation  = control attribute values by our rules
+# 2 abstarction = hide unnecessary details to user using private method using __methodName
+# 3 inheritance = create child clasees base on parent class
+# 4 polymorphism = one single entity that you can use from multyple different objs
+
+
+
+
+
+
+
+
+
 import csv
 
 
