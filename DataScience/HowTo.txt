@@ -1,0 +1,48 @@
+ --------------------------------------/
+ Create a model for regression---------/
+ --------------------------------------/
+    use gradienDescent model applied to MSE 
+    find the partial derivative against m and q
+    iterate the process and find the best fit equation
+
+    This method can be applied to 
+        Linear equation
+        y = m * x + q
+        m = 0
+        q = 0
+        1/n * sum(y - yPred)**2
+        mDrv = (-2/n) * sum(x * (y - yPred)) derivate mse against m
+        qDrv = (-2/n) * sum(y - yPred) derivate the mse against q
+        
+        Multivariate equation
+        y = m0 * x + m1 * x + m2 * x + m(n) * x(n) + q
+        m = 0
+        q = 0
+        1/n * sum(y - yPred)**2
+        mDrv = ?
+        qDrv = ?
+
+        Esponential equatuations
+        y = m0 * x + m1 * x**2 + m2 * x**3 + ... m(n) * x(n)**n + q
+        m = 0
+        q = 0
+        1/n * sum(y - yPred)**2
+        mDrv = ?
+        qDrv = ?
+
+ --------------------------------------/
+ Calcuclate how well the model perform-/
+ --------------------------------------/
+    Calculate the erro - residual
+    y - yPred
+    calculate the sum of squares errors
+    calculate the sum of squares total
+    calculate the sum of squares regression 
+    calculate the coefficient of determination 
+    a tecnique used to calculate the percentage of success of our model
+    MSE mean squared error
+    SSE = sum(y - yPred)**2
+    SST = sum(y - meanY)**2
+    SSR = sum(ymean - yPred)**2
+    r**2 = SSR/SST (*100 to calculatwe the percentage)
+    MSE = 1/n * sum(y - yPred)**2

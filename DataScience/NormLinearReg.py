@@ -101,8 +101,11 @@ for i in range(cicles):
     # calculate the sum of squares regression 
     # calculate the coefficient of determination 
     # a tecnique used to calculate the percentage of success of our model
-   
+    # MSE mean squared error
+
+
     # SSE = sum(y - yPred)**2
     # SST = sum(y - meanY)**2
     # SSR = sum(ymean - yPred)**2
     # r**2 = SSR/SST (*100 to calculatwe the percentage)
+    # MSE = 1/n * sum(y - yPred)**2
