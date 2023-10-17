@@ -15,7 +15,7 @@
         qDrv = (-2/n) * sum(y - yPred) derivate the mse against q
         
         Multivariate equation
-        y = m0 * x + m1 * x + m2 * x + m(n) * x(n) + q
+        y = m0 + m1 * x1 + m2 * x2 + m(n) * x(n) + q
         m = 0
         q = 0
         1/n * sum(y - yPred)**2
