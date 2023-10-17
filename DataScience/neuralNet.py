@@ -1,8 +1,9 @@
 # simple neural network mnist database
 import numpy as np
 import struct as st
-from matplotlib import pyplot as plt
 import time
+import pandas as pd
+from matplotlib import pyplot as plt
 
 imgpath = r'datascience\data\mnist\train-images.idx3-ubyte'
 labelspath = r'datascience\data\mnist\train-labels.idx1-ubyte'
@@ -33,10 +34,10 @@ with open(imgpath, 'rb') as imagefile:#open context manager, read file in binary
 with open(labelspath, 'rb') as labelfile:
     labelfile.seek(0)
     magic = st.unpack(">4b", labelfile.read(4))
-    print(magic)
+    # print(magic)
     labelfile.seek(4)
     labelnumb = st.unpack('>i',labelfile.read(4))
-    print(labelnumb)
+    # print(labelnumb)
     
 totalbytes = labelnumb[0]
 
@@ -60,14 +61,23 @@ with open(labelspath, "rb") as labelfile:
 # mimageshow(imgaArray)
 #///////////////////////////////////////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////////////////////////////////////
-# Neural network(data x 10 x 10 = y)
+# Neural network(data x 10 x 10 = y) composition FORprop | data -> z1 then apply a1 -> z2 then apply a2 -> result predictions 
 # layer 0 = Data
 # layer 1 = 10 neuron network
 # layer 2 = 10 neuron network
 # layer 3 = Output
+# initialize trainig and test dataSet
 
-# layer 1 define the weights w*x(data) + b
 
-xVar = xVar.T
-print(np.shape(xVar))
 
+
+
+# define parameter w and b (weights an biases)
+def initParam():
+    w1 = np.random.randn(10, 784)#define random weights between data and first neuron layer
+    b1 = np.random.randn(10, 1)
+    w2 = np.random.randn(10,10)
+    b2 = np.random.randn(10,1)
+
+
+# define te initial 
