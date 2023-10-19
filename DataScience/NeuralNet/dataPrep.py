@@ -2,13 +2,9 @@
 import numpy as np
 import struct as st
 import time
-<<<<<<< HEAD:DataScience/NeuralNet/dataPrep.py
 import os
 import pandas as pd
 from zipfile import ZipFile as zf
-=======
-import pandas as pd
->>>>>>> 664c9e2803a3bd8a29864bf7cacb62bc03ba7750:DataScience/neuralNet.py
 from matplotlib import pyplot as plt
 
 imgpath = r'C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\train-images.idx3-ubyte'
@@ -62,7 +58,6 @@ with open(labelspath, "rb") as labelfile:
 # mimageshow(imgaArray)
 #///////////////////////////////////////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD:DataScience/NeuralNet/dataPrep.py
 
 # Create CSV file for better management
 csvLabels = list()
@@ -93,25 +88,3 @@ with open(r"C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\MNIST.csv"
 #     zFile.write(r"C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\MNIST.csv")
 
 # os.remove(r"C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\MNIST.csv")
-=======
-# Neural network(data x 10 x 10 = y) composition FORprop | data -> z1 then apply a1 -> z2 then apply a2 -> result predictions 
-# layer 0 = Data
-# layer 1 = 10 neuron network
-# layer 2 = 10 neuron network
-# layer 3 = Output
-# initialize trainig and test dataSet
-
-
-
-
-
-# define parameter w and b (weights an biases)
-def initParam():
-    w1 = np.random.randn(10, 784)#define random weights between data and first neuron layer
-    b1 = np.random.randn(10, 1)
-    w2 = np.random.randn(10,10)
-    b2 = np.random.randn(10,1)
-
-
-# define te initial 
->>>>>>> 664c9e2803a3bd8a29864bf7cacb62bc03ba7750:DataScience/neuralNet.py
