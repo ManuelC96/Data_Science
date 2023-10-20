@@ -62,7 +62,7 @@ def cost(prediction, label):
     return Cost
 
 # define backwardprop
-def backwardProp(Z1, A1, Z2, A2, Y):
+def backwardProp(Z1, A1, Z2, A2, Y, X):
     m = Y.size 
     Y = oneHot(Y) 
     # find how each parameter and function influenced the cost
@@ -75,10 +75,10 @@ def backwardProp(Z1, A1, Z2, A2, Y):
     # DataSet
 
     # Parameter to find dW1 dB1 dW2 dB2
-    dCdW2 = someFormula
-    dCdB2 = someFormula
-    dCdW1 = someFormula
-    dCdB1 = someFormula
+    dCdW2 = (1/m) * (2*(A2.T - Y)) * (1 - Z2) * A1.T
+    dCdB2 = (1/m) * (2*(A2.T - Y)) * (1 - Z2) 
+    dCdW1 = (1/m) * (2*(A1.T - Y)) * (1 - Z1) * X.T
+    dCdB1 = (1/m) * (2*(A1.T - Y)) * (1 - Z1) 
 
 
     return dCdW1, dCB1, dCW2, dCB2
@@ -90,11 +90,15 @@ def paramUpdate(W1, B1, W2, B2, dW1, dB1, dW2, dB2, alpha):
     B2 = B2 - alpha * dB2
     return W1, B1, W2, B2
 
-def gradientDescent(X, Y):
+def gradientDescent(X, Y, Cicles, subCicles):
     W1, B1, W2, B2 = initParam()    
-    Z1, A1, Z2, A2 = forwardProp(W1, B1, W2, B2)
-    dCdW1, dCB1, dCW2, dCB2 = backwardProp(Z1, A1, Z2, A2, Y)
-    W1, B1, W2, B2 = paramUpdate(W1, B1, W2, B2, dCW1, dCB1, dCW2, dCB2, alpha=0.01)
+    for i in range(Cicles):
+        for j in range(subCicles):
+
+            Z1, A1, Z2, A2 = forwardProp(W1, B1, W2, B2)
+            dCdW1, dCB1, dCW2, dCB2 = backwardProp(Z1, A1, Z2, A2, Y)
+            W1, B1, W2, B2 = paramUpdate(W1, B1, W2, B2, dCW1, dCB1, dCW2, dCB2, alpha=0.01)
+
 
 
 
