@@ -46,7 +46,7 @@ def oneHot(Y):
     return oneHotY
 
 Y = oneHot(yTrain)
-
+a =1
 # define forward prop 
 def forwardProp(W1, B1, W2, B2, X):
     Z1 = W1.dot(X) + (-B1)
