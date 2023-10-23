@@ -70,10 +70,20 @@ def cost(prediction, label):
     for i in range(len(Cost)):
         elCost = np.sum(Cost[i])
         totCosts.append(elCost)
-    
     return totCosts
 
-print(cost(A2, Y ))
+    
+def stdDev(X):
+    Tot = 0
+    for k in range(len(X)):
+        Tot += X[k]
+    Tot = Tot/len(X)
+    Tot = np.sqrt(Tot)
+    return Tot
+   
+errorX = cost(A2, Y)
+print(stdDev(errorX))
+
 
 # # define backwardprop
 # def backwardProp(Z1, A1, Z2, A2, Y, X):
