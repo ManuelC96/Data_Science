@@ -2,26 +2,31 @@ import numpy as np
 import struct as st
 import time
 import pandas as pd
+import shutil
 from matplotlib import pyplot as plt
 
+# extraxt zip file
+# shutil.unpack_archive(r"C:\Users\manue\Downloads\Data_Science\dataSets\MNIST\MNIST.zip",r"C:\Users\manue\Downloads\Data_Science\DataScience\NeuralNet")
 
-# prepare data
-data = pd.read_csv(r"C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\MNIST.csv") 
+data = pd.read_csv(r"C:\Users\manue\Downloads\Data_Science\dataSets\MNIST\MNIST.csv") 
 
 m, n = data.shape
 
 data = np.array(data)
 np.random.shuffle(data)
-
-limit = 59000
+# data division
+div = .1
+limit = len(data)-int(len(data) * div)
+print(limit)
 
 dataDev = data[:limit].T
 yDev = dataDev[0] 
 xDev = dataDev[1: n]
 
 dataTrain = data[limit: m ].T
-
+print(dataTrain)
 yTrain = dataTrain[0]
+
 xTrain = dataTrain[1:n]
 
 
@@ -85,24 +90,16 @@ errorX = cost(A2, Y)
 print(stdDev(errorX))
 
 
-# # define backwardprop
-# def backwardProp(Z1, A1, Z2, A2, Y, X):
-#     m = Y.size 
-#     Y = oneHot(Y) 
-#     # find how each parameter and function influenced the cost
-#     #defining the neutal tree
-#     # Cost np.sum((A2 - Y)*2)
-#     # A2 SoftMax
-#     # Z2 W2*X + B2 
-#     # A1 sigmoid func
-#     # Z1 W1*X + B1
-#     # DataSet
-
-#     # Parameter to find dW1 dB1 dW2 dB2
-#     dCdW2 = (1/m) * ((2*(A2.T - Y.T)).dot((1 - Z2))).dot(A1.T) 
-#     dCdB2 = (1/m) * ((2*(A2.T - Y.T)).dot((1 - Z2)))
-#     dCdW1 = (1/m) * ((2*(A1.T - Y.T)).dot((1 - Z2))).dot(X.T)
-#     dCdB1 = (1/m) * ((2*(A1.T - Y.T)).dot((1 - Z2)))
+# define backwardprop
+def backwardProp(Z1, A1, Z2, A2, Y, X):
+    m = Y.size 
+    Y = oneHot(Y) 
+    # find influences of W and b on cost
+    # W1 = W1 - alpha * dCost/dW1
+    # b1 = b1 - alpha * dCost/db1 
+    # W2 = W2 - alpha * dCost/dW2 
+    # b2 = b2 - alpha * dCost/db2
+    # for backward we only need dCost/d(W[n] and b[n])
 
 
 #     return dCdW1, dCdB1, dCdW2, dCdB2
@@ -128,3 +125,7 @@ print(stdDev(errorX))
 
 
 # print(gradientDescent(xTrain, yTrain, 10, 10))
+
+
+
+

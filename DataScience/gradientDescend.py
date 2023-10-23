@@ -12,12 +12,15 @@ def derivative(x):
 
 x = np.arange(-100, 100, 0.1)
 y = yFunc(x)
+pos = -100
+currentPosition = (pos, yFunc(pos))
 
-currentPosition = (80, yFunc(80))
-
-learningRate = 0.001
+learningRate = 0.10
 
 for _ in range(500):
+    print(currentPosition[0])
+    print(derivative(currentPosition[0]))
+    print(learningRate * derivative(currentPosition[0]))
     newX = currentPosition[0] - learningRate * derivative(currentPosition[0])
     newY = yFunc(newX)
     currentPosition = (newX, newY)

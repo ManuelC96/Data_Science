@@ -7,8 +7,8 @@ import pandas as pd
 from zipfile import ZipFile as zf
 from matplotlib import pyplot as plt
 
-imgpath = r'C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\train-images.idx3-ubyte'
-labelspath = r'C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\train-labels.idx1-ubyte'
+imgpath = r'C:\Users\manue\Downloads\Data_Science\DataScience\data\MNIST\t10k-images.idx3-ubyte'
+labelspath = r'C:\Users\manue\Downloads\Data_Science\DataScience\data\MNIST\t10k-labels.idx1-ubyte'
 
 # extract numbers froms MNIST
 with open(imgpath, 'rb') as imagefile:#open context manager, read file in binary format
@@ -65,7 +65,7 @@ for i in range(784):
     csvLabels.append(f"pixel-{i}")
 print(len(csvLabels))
 
-with open(r"C:\Users\mchiocchetta\Desktop\Data_Science\dataSets\MNIST\MNIST.csv", 'w',) as f:
+with open(r"C:\Users\manue\Downloads\Data_Science\dataSets\MNIST\MNIST.csv", 'w') as f:
     f.write("%s"%("number,"))
     for j in range(len(csvLabels)):
         
